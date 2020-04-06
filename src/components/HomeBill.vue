@@ -5,7 +5,7 @@
         span.card-title Счет в валюте
         p.currency-line(
           v-for="cur in currencies"
-          :key="currency"
+          :key="cur"
         )
           span {{getCurrenct(cur) | currency(cur)}}
 </template>

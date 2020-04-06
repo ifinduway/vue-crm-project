@@ -2,7 +2,9 @@
   div
     .page-title
       h3 Счет
-      button.btn.waves-effect.waves-light.btn-small
+      button.btn.waves-effect.waves-light.btn-small(
+        @click="refresh"
+      )
         i.material-icons refresh
     Loader(v-if="loading")
     .row(v-else)
@@ -35,6 +37,13 @@ export default {
       loading: true,
       currency: null,
     };
+  },
+  methods: {
+    async refresh() {
+      this.loading = true;
+      this.currency = await this.$store.dispatch('fetchCurrency');
+      this.loading = false;
+    },
   },
 };
 </script>
