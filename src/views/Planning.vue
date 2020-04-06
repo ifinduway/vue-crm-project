@@ -2,12 +2,12 @@
   div
     .page-title
       h3 Планирование
-      h4 12 212
+      h4 12 000
     section
       div
         p
-          strong Девушка:
-          |         12 122 из 14 0000
+          strong пивасик:
+          |         12 000 из 14 0000
         .progress
           .determinate.green(style="width:40%")
 </template>

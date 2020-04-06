@@ -5,26 +5,19 @@
       button.btn.waves-effect.waves-light.btn-small
         i.material-icons refresh
     .row
-      .col.s12.m6.l4
-        .card.light-blue.bill-card
-          .card-content.white-text
-            span.card-title Счет в валюте
-            p.currency-line
-              span 12.0 Р
-      .col.s12.m6.l8
-        .card.orange.darken-3.bill-card
-          .card-content.white-text
-            .card-header
-              span.card-title Курс валют
-            table
-              thead
-                tr
-                  th Валюта
-                  th Курс
-                  th Дата
-              tbody
-                tr
-                  td руб
-                  td 12121
-                  td 12.12.12
+      HomeBill
+      HomeCurrency
+
 </template>
+
+<script>
+import HomeBill from '@/components/HomeBill.vue';
+import HomeCurrency from '@/components/HomeCurrency.vue';
+
+export default {
+  components: {
+    HomeBill,
+    HomeCurrency,
+  },
+};
+</script>

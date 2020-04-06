@@ -5,6 +5,16 @@
 
 <script>
 export default {
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  watch: {
+    error(frbError) {
+      console.log(frbError);
+    },
+  },
 };
 </script>
 

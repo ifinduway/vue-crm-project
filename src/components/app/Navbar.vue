@@ -8,7 +8,7 @@ nav.navbar.orange.lighten-1
     ul.right.hide-on-small-and-down
       li
         a.dropdown-trigger.black-text(href="#" data-target="dropdown" ref="dropdown")
-          | Имя пользователя
+          | {{ name }}
           i.material-icons.right arrow_drop_down
         ul#dropdown.dropdown-content
           li
@@ -32,9 +32,14 @@ export default {
     };
   },
   methods: {
-    logout() {
-      console.log('logout');
+    async logout() {
+      await this.$store.dispatch('logout');
       this.$router.push('/login?message=logout');
+    },
+  },
+  computed: {
+    name() {
+      return this.$store.getters.info.name;
     },
   },
   mounted() {
