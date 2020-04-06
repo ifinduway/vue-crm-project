@@ -11,8 +11,19 @@
               th Курс
               th Дата
           tbody
-            tr
-              td руб
-              td 12121
-              td 12.12.12
+            tr(v-for="cur in currencies" :key="cur")
+              td {{cur}}
+              td {{rates[cur].toFixed(2)}}
+              td {{date | date('date')}}
 </template>
+
+<script>
+export default {
+  props: ['rates', 'date'],
+  data() {
+    return {
+      currencies: ['RUB', 'USD', 'EUR'],
+    };
+  },
+};
+</script>

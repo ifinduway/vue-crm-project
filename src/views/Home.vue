@@ -4,9 +4,15 @@
       h3 Счет
       button.btn.waves-effect.waves-light.btn-small
         i.material-icons refresh
-    .row
-      HomeBill
-      HomeCurrency
+    Loader(v-if="loading")
+    .row(v-else)
+      HomeBill(
+        :rates="currency.rates"
+      )
+      HomeCurrency(
+        :rates="currency.rates"
+        :date="currency.date"
+      )
 
 </template>
 
@@ -18,6 +24,17 @@ export default {
   components: {
     HomeBill,
     HomeCurrency,
+  },
+  async mounted() {
+    this.currency = await this.$store.dispatch('fetchCurrency');
+    console.log(this.currency);
+    this.loading = false;
+  },
+  data() {
+    return {
+      loading: true,
+      currency: null,
+    };
   },
 };
 </script>
