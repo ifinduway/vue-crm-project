@@ -45,7 +45,6 @@ export default {
     // eslint-disable-next-line consistent-return
     async submitHandler() {
       if (this.$v.$invalid) {
-        console.log(this.$v.limit);
         this.$v.$touch();
         return 0;
       }
@@ -56,6 +55,11 @@ export default {
           limit: this.limit,
         });
         console.log(category);
+        this.title = '';
+        this.limit = 100;
+        this.$v.$reset();
+        this.$message('Категория создана');
+        this.$emit('created', category);
       } catch (e) { console.log('Category Create ERROR'); }
     },
   },
