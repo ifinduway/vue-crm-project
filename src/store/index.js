@@ -2,14 +2,19 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Auth from './auth';
 import Info from './info';
-import category from './category';
+import Category from './category';
+import Record from './record';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+
+
   state: {
     error: null,
   },
+
+
   mutations: {
     setError(state, error) {
       state.error = error;
@@ -18,6 +23,8 @@ export default new Vuex.Store({
       state.error = null;
     },
   },
+
+
   actions: {
     async fetchCurrency() {
       const key = process.env.VUE_APP_FIXER;
@@ -25,12 +32,17 @@ export default new Vuex.Store({
       return res.json();
     },
   },
+
+
   getters: {
     error: (e) => e.error,
   },
+
+
   modules: {
     Auth,
     Info,
-    category,
+    Category,
+    Record,
   },
 });

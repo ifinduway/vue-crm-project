@@ -1,7 +1,10 @@
 import firebase from 'firebase/app';
 
 export default {
+
+
   actions: {
+
     async createCategory({ commit, dispatch }, { title, limit }) {
       try {
         const uid = await dispatch('getUid');
@@ -16,6 +19,7 @@ export default {
         throw e;
       }
     },
+
     async fetchCategories({ commit, dispatch }) {
       try {
         const uid = await dispatch('getUid');

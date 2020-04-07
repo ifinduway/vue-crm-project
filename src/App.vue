@@ -15,10 +15,13 @@ export default {
     };
   },
 
+
   components: {
     EmptyLayout,
     MainLayout,
   },
+
+
   computed: {
     layout() {
       // eslint-disable-next-line prefer-template

@@ -15,7 +15,6 @@
         :rates="currency.rates"
         :date="currency.date"
       )
-
 </template>
 
 <script>

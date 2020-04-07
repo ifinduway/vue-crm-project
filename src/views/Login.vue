@@ -36,6 +36,7 @@
 import { email, required, minLength } from 'vuelidate/lib/validators';
 import messages from '@/utils/messages';
 
+
 export default {
   name: 'login',
   data() {
@@ -44,13 +45,17 @@ export default {
       password: '',
     };
   },
+
+
   computed: {
+
     inputEmailClass() {
       return {
         invalid: (this.$v.email.$dirty && !this.$v.email.required)
           || (this.$v.email.$dirty && !this.$v.email.email),
       };
     },
+
     inputPasswordClass() {
       return {
         invalid: (this.$v.password.$dirty && !this.$v.password.required)
@@ -58,16 +63,23 @@ export default {
       };
     },
   },
+
+
   mounted() {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message]);
     }
   },
+
+
   validations: {
     email: { email, required },
-    password: { required, minLength: minLength(12) },
+    password: { required, minLength: minLength(6) },
   },
+
+
   methods: {
+
     async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();

@@ -3,11 +3,11 @@
     .card.light-blue.bill-card
       .card-content.white-text
         span.card-title Счет в валюте
-        p.currency-line(
-          v-for="cur in currencies"
-          :key="cur"
-        )
-          span {{getCurrenct(cur) | currency(cur)}}
+          p.currency-line(
+            v-for="cur in currencies"
+            :key="cur"
+          )
+            span {{getCurrenct(cur) | currency(cur)}}
 </template>
 
 <script>

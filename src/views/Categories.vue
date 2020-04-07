@@ -19,6 +19,7 @@ import CategoryCreate from '../components/CategoryCreate.vue';
 import CategoryEdit from '../components/CategoryEdit.vue';
 
 export default {
+
   name: 'categories',
   components: {
     CategoryCreate,
@@ -32,15 +33,21 @@ export default {
       updateCount: 0,
     };
   },
+
+
   async mounted() {
     this.categories = await this.$store.dispatch('fetchCategories');
     console.log(this.categories);
     this.loading = false;
   },
+
+
   methods: {
+
     addNewCategory(category) {
       this.categories.push(category);
     },
+
     updateCategories(category) {
       const idx = this.categories.findIndex((c) => c.id === category.id);
       this.categories[idx].title = category.title;

@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 
 
 export default {
+
   actions: {
     // eslint-disable-next-line no-unused-vars
     async login({ dispatch, commit }, { email, password }) {
@@ -27,6 +28,7 @@ export default {
         throw e;
       }
     },
+
     getUid() {
       const user = firebase.auth().currentUser;
       return user ? user.uid : null;

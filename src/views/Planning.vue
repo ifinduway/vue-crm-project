@@ -2,12 +2,61 @@
   div
     .page-title
       h3 Планирование
-      h4 12 000
-    section
-      div
+      h4 {{info.bill | currency('RUB')}}
+    Loader(v-if="loading")
+    p(v-else-if="!categories.length") Категорий пока нет
+      router-link(to="/categories") СОЗДАТЬ
+    section(v-else)
+      div(v-for="cat in categories" :key="cat.id")
         p
-          strong пивасик:
-          |         12 000 из 14 0000
+          strong {{cat.title}}:
+          | {{cat.spend}} из {{cat.limit}}
         .progress
-          .determinate.green(style="width:40%")
+          .determinate(
+            :style="{width: `${cat.progressPercent}%`}"
+            :class="getPercentClass(cat.progressPercent)"
+            )
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  data() {
+    return {
+      loading: true,
+      categories: [],
+    };
+  },
+
+  computed: {
+    ...mapGetters(['info']),
+  },
+
+  async mounted() {
+    const [records, categories] = await Promise.all([this.$store.dispatch('fetchRecords'), this.$store.dispatch('fetchCategories')]);
+
+    this.categories = categories.map((cat) => {
+      const spend = records
+        .filter((r) => r.categoryID === cat.id && r.type === 'outcome')
+        .reduce((total, record) => total + +record.amount, 0);
+      const percent = ((spend / cat.limit) * 100);
+      const progressPercent = percent > 100 ? 100 : percent;
+      return {
+        ...cat,
+        progressPercent,
+        spend,
+      };
+    });
+    this.loading = false;
+  },
+
+  methods: {
+    getPercentClass(percent) {
+      if (percent < 60) return 'green';
+      if (percent < 100) return 'yellow';
+      return 'red';
+    },
+  },
+};
+</script>

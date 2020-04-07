@@ -53,6 +53,7 @@
 import { email, required, minLength } from 'vuelidate/lib/validators';
 
 export default {
+
   name: 'registration',
   data() {
     return {
@@ -62,32 +63,42 @@ export default {
       agree: false,
     };
   },
+
+
   computed: {
+
     inputEmailClass() {
       return {
         invalid: (this.$v.email.$dirty && !this.$v.email.required)
           || (this.$v.email.$dirty && !this.$v.email.email),
       };
     },
+
     inputPasswordClass() {
       return {
         invalid: (this.$v.password.$dirty && !this.$v.password.required)
           || (this.$v.password.$dirty && !this.$v.password.minLength),
       };
     },
+
     inputNameClass() {
       return {
         invalid: this.$v.name.$dirty && !this.$v.name.required,
       };
     },
   },
+
+
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) },
     name: { required },
     agree: { checked: (v) => v },
   },
+
+
   methods: {
+
     async submitHandler() {
       if (this.$v.$invalid || this.agree === false) {
         this.$v.$touch();
