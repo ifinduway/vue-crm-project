@@ -8,13 +8,14 @@
         router-view
 
     .fixed-action-btn
-      router-link.btn-floationg.btn-large.blue(to="/record")
+      router-link.btn-floationg.btn-large.blue(to="/record" v-tooltip="'Создать новую запись'")
         i.large.material-icons add
 </template>
 
 <script>
 import Navbar from '@/components/app/Navbar.vue';
 import Sidebar from '@/components/app/Sidebar.vue';
+import messages from '@/utils/messages';
 
 export default {
   name: 'main-layout',
@@ -33,6 +34,16 @@ export default {
   components: {
     Navbar,
     Sidebar,
+  },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  watch: {
+    error(frbError) {
+      this.$error(messages[frbError.code] || 'Что-то пошло не так');
+    },
   },
 };
 </script>

@@ -11,7 +11,7 @@
         p
           strong {{cat.title}}:
           | {{cat.spend}} из {{cat.limit}}
-        .progress
+        .progress(v-tooltip="getTooltip(cat.limit,cat.spend)")
           .determinate(
             :style="{width: `${cat.progressPercent}%`}"
             :class="getPercentClass(cat.progressPercent)"
@@ -20,6 +20,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import currencyFilter from '@/filters/currency.filter';
 
 export default {
   data() {
@@ -33,7 +34,7 @@ export default {
     ...mapGetters(['info']),
   },
 
-  async mounted() {
+  async created() {
     const [records, categories] = await Promise.all([this.$store.dispatch('fetchRecords'), this.$store.dispatch('fetchCategories')]);
 
     this.categories = categories.map((cat) => {
@@ -56,6 +57,10 @@ export default {
       if (percent < 60) return 'green';
       if (percent < 100) return 'yellow';
       return 'red';
+    },
+    getTooltip(limit, spend) {
+      const tooltipValue = limit - spend;
+      return `${tooltipValue < 0 ? 'Превышение: ' : 'Осталось: '}${currencyFilter(Math.abs(tooltipValue))}`;
     },
   },
 };

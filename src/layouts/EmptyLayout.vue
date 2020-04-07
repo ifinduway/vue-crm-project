@@ -4,6 +4,8 @@
 </template>
 
 <script>
+import messages from '@/utils/messages';
+
 export default {
   computed: {
     error() {
@@ -12,7 +14,7 @@ export default {
   },
   watch: {
     error(frbError) {
-      console.log(frbError);
+      this.$error(messages[frbError.code] || 'Что-то пошло не так');
     },
   },
 };
