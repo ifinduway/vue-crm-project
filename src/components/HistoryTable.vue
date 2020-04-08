@@ -3,11 +3,11 @@
     thead
       tr
         th #
-        th Сумма
-        th Дата
-        th Категория
-        th Тип
-        th Открыть
+        th {{ 'DetailAmount' | localize }}
+        th {{ 'Date' | localize }}
+        th {{ 'DetailCategory' | localize }}
+        th {{ 'DetailType' | localize }}
+        th {{ 'DetailCategory' | localize }}
     tbody
       tr(v-for="(record, index) in records" :key="record.id")
         td {{index + 1}}

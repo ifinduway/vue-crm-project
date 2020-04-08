@@ -1,11 +1,11 @@
 <template lang="pug">
   div
     .page-title
-      h3 Планирование
+      h3 {{ 'Planning' | localize }}
       h4 {{info.bill | currency('RUB')}}
     Loader(v-if="loading")
     p(v-else-if="!categories.length") Категорий пока нет
-      router-link(to="/categories") СОЗДАТЬ
+      router-link(to="/categories") {{ 'Create' | localize }}
     section(v-else)
       div(v-for="cat in categories" :key="cat.id")
         p
@@ -23,6 +23,11 @@ import { mapGetters } from 'vuex';
 import currencyFilter from '@/filters/currency.filter';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('SideBarPlanning'),
+    };
+  },
   data() {
     return {
       loading: true,

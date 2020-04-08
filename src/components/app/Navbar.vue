@@ -14,12 +14,12 @@ nav.navbar.orange.lighten-1
           li
             router-link.black-text(to="/profile")
               i.material-icons account_circle
-              | Профиль
+              | {{ 'NavbarProfile' | localize }}
           li.divider(tabindex="-1")
           li
             a.black-text(href="#" @click.prevent="logout")
               i.material-icons assignment_return
-                    | Выйти
+                    | {{ 'NavbarExit' | localize }}
 </template>
 
 <script>

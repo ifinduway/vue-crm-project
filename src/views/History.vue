@@ -1,12 +1,12 @@
 <template lang="pug">
   div
     .page-title
-      h3 История записей
+      h3 {{ 'HistoryRecords' | localize }}
     .history-chart
       canvas(ref="canvas")
     Loader(v-if="loading")
 
-    p.center(v-else-if="!records.length") Записей пока нет
+    p.center(v-else-if="!records.length") {{ 'HistoryRecordsNotFounded' | localize }}
 
     section(v-else)
       HistoryTable(:records="records")
@@ -15,9 +15,15 @@
 <script>
 import HistoryTable from '@/components/HistoryTable.vue';
 import { Pie } from 'vue-chartjs';
+import localizeFilter from '@/filters/localize.filter';
 
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('SideBarHistory'),
+    };
+  },
   name: 'history',
   extends: Pie,
   data() {
@@ -41,7 +47,7 @@ export default {
         ...record,
         categoryName: this.categories.find((c) => c.id === record.categoryID).title,
         typeClass: record.type === 'income' ? 'green' : 'red',
-        typeText: record.type === 'income' ? 'Доход' : 'Расход',
+        typeText: record.type === 'income' ? localizeFilter('income') : localizeFilter('outcome'),
       };
     });
     this.loading = false;

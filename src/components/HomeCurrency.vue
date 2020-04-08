@@ -3,17 +3,17 @@
     .card.orange.darken-3.bill-card
       .card-content.white-text
         .card-header
-          span.card-title Курс валют
+          span.card-title {{'ExchangeRates' | localize}}
         table
           thead
             tr
-              th Валюта
-              th Курс
-              th Дата
+              th {{ 'Currency' | localize }}
+              th {{ 'Exchange' | localize }}
+              th {{ 'Date' | localize }}
           tbody
             tr(v-for="cur in currencies" :key="cur")
               td {{cur}}
-              td {{rates[cur].toFixed(2)}}
+              td {{rates[cur]}}
               td {{date | date('date')}}
 </template>
 
@@ -22,7 +22,7 @@ export default {
   props: ['rates', 'date'],
   data() {
     return {
-      currencies: ['RUB', 'USD', 'EUR'],
+      currencies: ['RUB', 'USD', 'MYR'],
     };
   },
 };

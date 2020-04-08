@@ -7,30 +7,32 @@
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter';
+
 export default {
   props: ['value'],
   data() {
     return {
       links: [
         {
-          title: 'Счет',
+          title: localizeFilter('SideBarBill'),
           url: '/',
           exact: true,
         },
         {
-          title: 'История',
+          title: localizeFilter('SideBarHistory'),
           url: '/history',
         },
         {
-          title: 'Планирование',
+          title: localizeFilter('SideBarPlanning'),
           url: '/planning',
         },
         {
-          title: 'Новая запись',
+          title: localizeFilter('SideBarRecord'),
           url: '/record',
         },
         {
-          title: 'Категория',
+          title: localizeFilter('SideBarCategories'),
           url: '/categories',
         },
       ],

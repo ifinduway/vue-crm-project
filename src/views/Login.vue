@@ -1,7 +1,7 @@
 <template lang="pug">
   form.card.auth-card(@submit.prevent="submitHandler")
       .card-content
-        span.card-title Домашняя бухгалтерия
+        span.card-title Тестовое приложение
         .input-field
           input#email(
             type="text"

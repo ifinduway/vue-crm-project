@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     .page-title
-      h3 Категории
+      h3 {{ 'CategoriesTitle' | localize }}
     section
       Loader(v-if="loading")
       .row(v-else)
@@ -18,7 +18,13 @@
 import CategoryCreate from '../components/CategoryCreate.vue';
 import CategoryEdit from '../components/CategoryEdit.vue';
 
+
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('SideBarCategories'),
+    };
+  },
 
   name: 'categories',
   components: {
@@ -37,7 +43,6 @@ export default {
 
   async mounted() {
     this.categories = await this.$store.dispatch('fetchCategories');
-    console.log(this.categories);
     this.loading = false;
   },
 

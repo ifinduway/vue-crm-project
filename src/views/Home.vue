@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     .page-title
-      h3 Счет
+      h3 {{ 'BillTitle' | localize}}
       button.btn.waves-effect.waves-light.btn-small(
         @click="refresh"
       )
@@ -22,13 +22,17 @@ import HomeBill from '@/components/HomeBill.vue';
 import HomeCurrency from '@/components/HomeCurrency.vue';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('SideBarBill'),
+    };
+  },
   components: {
     HomeBill,
     HomeCurrency,
   },
   async mounted() {
     this.currency = await this.$store.dispatch('fetchCurrency');
-    console.log(this.currency);
     this.loading = false;
   },
   data() {

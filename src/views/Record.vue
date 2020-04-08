@@ -2,7 +2,7 @@
 <template lang="pug">
   div
     .page-title
-      h3 Новая запись
+      h3 {{ 'RecordTitle' | localize }}
     Loader(v-if="loading")
     p.center(v-else-if="!categories.length") категорий пока нет.
       router-link(to="/categories") Добавить новую категорию
@@ -49,6 +49,11 @@ import { required, minValue } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('SideBarRecord'),
+    };
+  },
   name: 'record',
 
 

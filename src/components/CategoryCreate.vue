@@ -10,7 +10,7 @@
             v-model="title"
             :class="{invalid: $v.title.$dirty && !$v.title.required}"
             )
-          label(for="name") Название
+          label(for="name") {{ 'CatName' | localize }}
           span.helper-text(v-if="$v.title.$dirty && !$v.title.required") Введите название категории
         .input-field
           input(
@@ -18,12 +18,12 @@
             v-model.number="limit"
             :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
             )
-          label(for="limit") Лимит
+          label(for="limit") {{ 'CatLimit' | localize }}
           span.helper-text(
             v-if="$v.limit.$dirty && !$v.limit.minValue"
-            ) Мин. значение {{$v.limit.$params.minValue.min}}
+            ) {{ 'CatMinValue' | localize }} {{$v.limit.$params.minValue.min}}
         button.btn.waves-effect.waves-light(type="submit")
-          | Создать
+          | {{ 'CatCreate' | localize }}
           i.material-icons.right send
 </template>
 
